@@ -15,7 +15,7 @@
         <th:block th:replace = "layout/nav-left-sidebar ::nav-left-sidebar">
 
         </th:block>
-
+        <input type="text" id="currentRow" th:value="${mess}" style="display: none">
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content">
                 <div class="row">
@@ -29,36 +29,36 @@
                                 <div class="card">
                                     <h5 class="card-header">Basic Form</h5>
                                     <div class="card-body">
-                                        <form th:action="@{/staff/create}" th:object="${createStaff}">
+                                        <form th:action="@{/staff/create}" id="createFrm" th:object="${createStaff}" method="post">
                                             <div class="form-group">
                                                 <label for="fullName" class="col-form-label">Full Name:</label>
-                                                <input id="fullName" type="text" th:field="*{fullName}" placeholder="ABC" class="form-control">
+                                                <input id="fullName" type="text" name="fullname" th:field="*{fullName}" placeholder="ABC" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputEmail">Email address:</label>
-                                                <input id="inputEmail" type="email" th:field="*{email}" placeholder="name@example.com" class="form-control">
+                                                <input id="inputEmail" type="email" name="email" th:field="*{email}" placeholder="name@example.com" class="form-control">
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="address" class="col-form-label">Address:</label>
-                                                <input id="address" type="text" th:field="*{address}" placeholder="Tokyo" class="form-control">
+                                                <input id="address" type="text" th:field="*{address}" placeholder="Tokyo" name="address" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="dateOfBirthday">Date of Birthday:</label>
-                                                <input id="dateOfBirthday" type="date" th:field="*{dateOfBirth}" class="form-control">
+                                                <input id="dateOfBirthday" type="date" th:field="*{dateOfBirth}" class="form-control" name="dob">
                                             </div>
                                             <div class="form-group">
                                                 <label for="entryCompanyDate">Entry Company Date:</label>
-                                                <input id="entryCompanyDate" type="date" th:field="*{entryCompanyDate}" class="form-control">
+                                                <input id="entryCompanyDate" type="date" th:field="*{entryCompanyDate}" class="form-control" name="ecd">
                                             </div>
                                             <div class="form-group">
                                                 <label for="intro">Introduce</label>
-                                                <textarea class="form-control" th:field="*{introduce}" id="intro" rows="3"></textarea>
+                                                <textarea class="form-control" th:field="*{introduce}" id="intro" rows="3" name="intro"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="office">Office:</label>
-                                                <select class="form-control" id="office">
-                                                    <option th:each="office : ${offices}" th:field="*{office}" th:value="${office.id}" th:text="${office.name}"></option>
+                                                <select class="form-control" id="office" th:field="*{office}">
+                                                    <option th:each="office : ${offices}" th:value="${office.id}" th:text="${office.name}"></option>
                                                 </select>
                                             </div>
                                             <label>Skill:</label><br />
@@ -90,5 +90,49 @@
     <th:block th:replace="layout/script :: script" >
 
 </th:block>
+    <script>
+        class App {
+            static showAlert(icon, title) {
+                Swal.fire({
+                    icon: icon,
+                    title: title,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }
+        }
+        $(document).ready(function () {
+            let mess = $("currentRow").val();
+            if (mess != null){
+                $("#currentRow").val('');
+                if (mess = "Success !"){
+                    App.showAlert("success", mess)
+                }else{
+                    App.showAlert("danger", mess)
+                }
+            }
+
+            $("#createFrm").validate({
+                rules:{
+                    fullname:{
+                        required: true
+                    },email:{
+                        required: true
+                    },address:{
+                        required: true
+                    },dob:{
+                        required: true
+                    },ecd:{
+                        required: true
+                    },intro:{
+                        required: true
+                    }
+                },messsages:{
+
+                }
+            })
+        })
+    </script>
 </body>
 </html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="layout/head :: head">
+
+    </th:block>
+</head>
+<body>
+<div class="dashboard-main-wrapper">
+
+    <th:block th:replace = "layout/dashboard-header ::dashboard-header">
+
+    </th:block>
+
+    <th:block th:replace = "layout/nav-left-sidebar ::nav-left-sidebar">
+
+    </th:block>
+    <input type="text" id="currentRow" th:value="${mess}" style="display: none">
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="section-block" id="basicform">
+                                <h3 class="section-title">Basic Form Elements</h3>
+                               
+                            </div>
+                            <div class="card">
+                                <h5 class="card-header">Staff Information</h5>
+                                <div class="card-body">
+                                    <form id="editFrm" >
+                                        <div class="form-group">
+                                       
+                                            <label for="fullName" class="col-form-label">オフィス名:</label>
+                                             <span th:text="${staffInfo.get().office.name}" ></span>
+                                        </div>
+                                         <div class="form-group">
+                                       
+                                            <label for="fullName" class="col-form-label">名前:</label>
+                                             <span th:text="${staffInfo.get().fullName}" ></span>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="inputEmail">メール:</label>
+                                                <span th:text="${staffInfo.get().email}" ></span>
+
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="inputEmail">住所:</label>
+                                                <span th:text="${staffInfo.get().address}" ></span>
+
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="inputEmail">生年月日:</label>
+                                                <span th:text="${staffInfo.get().dateOfBirth}" ></span>
+
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label >エントリー会社の日付:</label>
+                                                <span th:text="${staffInfo.get().entryCompanyDate}" ></span>
+
+                                        </div>
+                                        
+                                           <div class="form-group">
+                                            <label >導入:</label>
+                                                <span  th:text="${staffInfo.get().introduce}" ></span>
+
+                                        </div>
+                                        
+                                        
+                                        <div>
+                                         <label>スキル:</label>
+                                         
+                                    
+                                        <label th:each="skills : ${staffInfo.get().skills}">
+                                        
+                                           
+                                            <span style="margin-right: 10px" th:text="${skills.skill}"></span>
+                                        </label>
+                                    
+                                        
+                                        </div>
+       
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                <!-- end container-fluid -->
+       
+				
+		
+	
+
+
+</body>
+</html>

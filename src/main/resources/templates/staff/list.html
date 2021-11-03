@@ -22,10 +22,10 @@
                <div class="table-title">
                    <div class="row">
                        <div class="col-sm-5">
-                           <h1>ダッシュボード</h1>
+                           <h1>ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰</h1>
                        </div>
                        <div class="col-sm-7">
-                           <a href="/staff/create" class="btn btn-outline-light"><i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>スタッフを追加</span></a>
+                           <a href="/staff/create" class="btn btn-outline-light"><i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>ã‚¹ã‚¿ãƒƒãƒ•ã‚’è¿½åŠ </span></a>
 
                        </div>
                    </div>
@@ -33,20 +33,28 @@
                <table id="staffList" class="table table-hover">
                    <thead>
                    <tr  class="text-center">
-                       <th>支店</th>
-                       <th>名前</th>
-                       <th>生年月日</th>
-                       <th>入社日</th>
-                       <th>メール</th>
+                       <th>æ”¯åº—</th>
+                       <th>å��å‰�</th>
+                       <th>ç”Ÿå¹´æœˆæ—¥</th>
+                       <th>å…¥ç¤¾æ—¥</th>
+                       <th>ãƒ¡ãƒ¼ãƒ«</th>
                    
-                       <th colspan="5">アクション</th>
+                       <th colspan="5">ã‚¢ã‚¯ã‚·ãƒ§ãƒ³</th>
                    </tr>
                    </thead>
                    <tbody >
 
                    <tr th:id="'staff_'+${staff.id}" th:each="staff : ${staffs}">
                      <td th:text="${staff.office}"  class="text-center"></td>
-                       <td th:text="${staff.fullName}"  class="text-center"></td>
+                     
+                     
+                     <td class="text-center"><a class="btn btn-outline-secondary"
+								title="Infor" data-toggle="tooltip"
+								th:href="@{/staff/info/__${staff.getId()}__ }"> <span
+									th:text="${staff.fullName}"></span>
+							</a></td>
+                       
+                       
                          <td th:text="${staff.getDateOfBirth()}"  class="text-center"></td>
                            <td th:text="${staff.getEntryCompanyDate()}"  class="text-center"></td>
                    
